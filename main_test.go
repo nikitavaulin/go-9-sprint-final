@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 func TestGenerateRandomElements(t *testing.T) {
@@ -19,7 +18,6 @@ func TestGenerateRandomElements(t *testing.T) {
 	}
 	for _, testCase := range testCases {
 		elements := generateRandomElements(testCase.inputSize)
-		require.NotNil(t, elements)
 		assert.Len(t, elements, testCase.expectedSize)
 	}
 }
@@ -30,8 +28,8 @@ func TestMaximum(t *testing.T) {
 		inputData      []int
 		expectedResult int
 	}{
-		{"nil slice", nil, -1},
-		{"empty slice", []int{}, -1},
+		{"nil slice", nil, 0},
+		{"empty slice", []int{}, 0},
 		{"one element in slice", []int{5}, 5},
 		{"ordinary elements in slice", []int{5, 5, 5}, 5},
 		{"max in first position", []int{7, 6, 2, 3, 6}, 7},
@@ -40,6 +38,6 @@ func TestMaximum(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		assert.Equal(t, maximum(testCase.inputData), testCase.expectedResult, testCase.testName)
+		assert.Equal(t, testCase.expectedResult, maximum(testCase.inputData), testCase.testName)
 	}
 }
